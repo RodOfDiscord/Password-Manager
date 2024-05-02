@@ -38,11 +38,7 @@ namespace Presentation
 
         static IConfigurationBuilder CreateConfigurationBuilder()
         {
-            return new ConfigurationBuilder().AddJsonFile
-                (
-                    Path.Combine(Directory.GetCurrentDirectory(),
-                    "appsettings.json")
-                );
+            return new ConfigurationBuilder().AddJsonFile("appsettings.json");
         }
     }
 }

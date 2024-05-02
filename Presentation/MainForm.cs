@@ -1,5 +1,4 @@
-using Domain;
-using Infrastructure;
+using Domain.Cipher;
 
 namespace Presentation
 {
@@ -8,6 +7,9 @@ namespace Presentation
         public MainForm()
         {
             InitializeComponent();
+            EncryptionService cipher = new EncryptionService(EncryptionKeyGenerator.Generate());
+            string text = "sayronXD";
+            MessageBox.Show(cipher.Decrypt(cipher.Encrypt(text)));
         }
     }
 }
