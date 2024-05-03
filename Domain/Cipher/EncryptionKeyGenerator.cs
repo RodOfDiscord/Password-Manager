@@ -6,10 +6,9 @@ namespace Domain.Cipher
     {
         public static byte[] Generate()
         {
-            var randomBytes = new byte[32]; // 32 Bytes will give us 256 bits.
+            var randomBytes = new byte[32];
             using (var rngCsp = RandomNumberGenerator.Create())
             {
-                // Fill the array with cryptographically secure random bytes.
                 rngCsp.GetBytes(randomBytes);
             }
             return randomBytes;

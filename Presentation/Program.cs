@@ -1,16 +1,15 @@
+using Domain.Cipher;
 using Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System.Configuration;
 
 namespace Presentation
 {
     internal static class Program
     {
         public static IServiceProvider? ServiceProvider { get; private set; }
-        public static IConfigurationRoot? Configuration { get; private set; }
         /// <summary>
         ///  The main entry point for the application.
         /// </summary>
@@ -18,8 +17,8 @@ namespace Presentation
         static void Main()
         {
             ApplicationConfiguration.Initialize();
-            Configuration = CreateConfigurationBuilder().Build();
             ServiceProvider = CreateHostBuilder().Build().Services;
+            CreateKey();
             Application.Run(ServiceProvider.GetRequiredService<MainForm>());
         }
 
@@ -31,14 +30,20 @@ namespace Presentation
                     services.AddTransient<MainForm>();
                     services.AddDbContext<PasswordStorageContext>(options =>
                     {
-                        options.UseSqlite(Configuration?.GetConnectionString("Default"));
+                        options.UseSqlite(context.Configuration.GetConnectionString("Default"));
+                    });
+                    services.AddScoped((provider) =>
+                    {
+                        return new KeyManager("Key.dat");
                     });
                 });
         }
 
-        static IConfigurationBuilder CreateConfigurationBuilder()
+        static void CreateKey()
         {
-            return new ConfigurationBuilder().AddJsonFile("appsettings.json");
+            KeyManager keyManager = ServiceProvider.GetRequiredService<KeyManager>();
+            if (!keyManager.KeyExists())
+                keyManager.EncryptToFile(EncryptionKeyGenerator.Generate());
         }
     }
 }
