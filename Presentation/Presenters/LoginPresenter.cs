@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using Presentation.Views;
+﻿using Presentation.Views;
 using Services;
 
 namespace Presentation.Presenters
