@@ -32,7 +32,8 @@ namespace Presentation.Presenters
                 return;
             }
 
-            loginPresenter.View.SetProfile(profile);
+            loginPresenter.View.SetUserName(profile.Name);
+            
             View.DisplayLoginUC((UserControl)loginPresenter.View);
         }
     }

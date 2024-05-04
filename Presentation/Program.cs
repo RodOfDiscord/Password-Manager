@@ -24,7 +24,7 @@ namespace Presentation
             ApplicationConfiguration.Initialize();
             ServiceProvider = CreateHostBuilder().Build().Services;
             CreateKey();
-            ServiceProvider.GetRequiredService<ChooseProfilePresenter>().Run();
+            ServiceProvider.GetRequiredService<BasePresenter<IChooseProfileView>>().Run();
         }
 
         static IHostBuilder CreateHostBuilder()
@@ -44,9 +44,15 @@ namespace Presentation
                     services.AddTransient<IProfileService, ProfileService>();
                     services.AddTransient<IBaseRepository<Profile>, ProfileRepository>();
                     services.AddTransient<IChooseProfileView, ChooseProfile>();
-                    services.AddTransient<ChooseProfilePresenter>();
+                    services.AddTransient<BasePresenter<IChooseProfileView>, ChooseProfilePresenter>();
                     services.AddTransient<ILoginView, LoginUserControl>();
                     services.AddTransient<BasePresenter<ILoginView>, LoginPresenter>();
+                    services.AddTransient<ILoginService, LoginService>();
+                    services.AddTransient<IProfileRepository, ProfileRepository>();
+                    services.AddTransient<IEncryptionService, EncryptionService>(provider =>
+                    {
+                        return new EncryptionService(provider.GetRequiredService<KeyManager>().GetDecryptedKey());
+                    });
                 });
         }
 

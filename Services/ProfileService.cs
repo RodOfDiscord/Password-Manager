@@ -5,16 +5,16 @@ namespace Services
 {
     public class ProfileService : IProfileService
     {
-        IBaseRepository<Profile> repository;
+        IProfileRepository repository;
 
-        public ProfileService(IBaseRepository<Profile> repository)
+        public ProfileService(IProfileRepository repository)
         {
             this.repository = repository;
         }
 
         public Profile? FindByName(string name)
         {
-            return repository.GetAll().FirstOrDefault(x => x.Name == name);
+            return repository.GetByName(name);
         }
 
         public IEnumerable<Profile> GetProfiles()

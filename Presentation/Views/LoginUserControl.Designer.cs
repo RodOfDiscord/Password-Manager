@@ -31,18 +31,20 @@
             buttonLogin = new Button();
             textBoxPassword = new TextBox();
             groupBox = new GroupBox();
+            messageLabel = new Label();
             groupBox.SuspendLayout();
             SuspendLayout();
             // 
             // buttonLogin
             // 
             buttonLogin.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            buttonLogin.Location = new Point(67, 71);
+            buttonLogin.Location = new Point(64, 51);
             buttonLogin.Name = "buttonLogin";
             buttonLogin.Size = new Size(75, 23);
             buttonLogin.TabIndex = 0;
             buttonLogin.Text = "Login";
             buttonLogin.UseVisualStyleBackColor = true;
+            buttonLogin.Click += buttonLogin_Click;
             // 
             // textBoxPassword
             // 
@@ -55,6 +57,7 @@
             // groupBox
             // 
             groupBox.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            groupBox.Controls.Add(messageLabel);
             groupBox.Controls.Add(buttonLogin);
             groupBox.Controls.Add(textBoxPassword);
             groupBox.Location = new Point(122, 91);
@@ -63,6 +66,15 @@
             groupBox.TabIndex = 2;
             groupBox.TabStop = false;
             groupBox.Text = "groupBox1";
+            // 
+            // messageLabel
+            // 
+            messageLabel.Dock = DockStyle.Bottom;
+            messageLabel.Location = new Point(3, 82);
+            messageLabel.Name = "messageLabel";
+            messageLabel.Size = new Size(194, 15);
+            messageLabel.TabIndex = 3;
+            messageLabel.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // LoginUserControl
             // 
@@ -81,5 +93,6 @@
         private Button buttonLogin;
         private TextBox textBoxPassword;
         private GroupBox groupBox;
+        private Label messageLabel;
     }
 }

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Repositories
 {
-    public class ProfileRepository : BaseRepository<Profile>
+    public class ProfileRepository : BaseRepository<Profile>, IProfileRepository
     {
         public ProfileRepository(PasswordStorageContext context) : base(context)
         {
@@ -12,6 +12,11 @@ namespace Infrastructure.Repositories
         public IEnumerable<Profile> GetAllWithNotes()
         {
             return dbSet.Include(x => x.Notes);
+        }
+
+        public Profile? GetByName(string name)
+        {
+            return GetAll().FirstOrDefault(x => x.Name == name);
         }
     }
 }
