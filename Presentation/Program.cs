@@ -1,9 +1,14 @@
+using Domain;
 using Domain.Cipher;
 using Infrastructure;
+using Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Presentation.Presenters;
+using Presentation.Views;
+using Services;
 
 namespace Presentation
 {
@@ -19,7 +24,7 @@ namespace Presentation
             ApplicationConfiguration.Initialize();
             ServiceProvider = CreateHostBuilder().Build().Services;
             CreateKey();
-            Application.Run(ServiceProvider.GetRequiredService<MainForm>());
+            ServiceProvider.GetRequiredService<ChooseProfilePresenter>().Run();
         }
 
         static IHostBuilder CreateHostBuilder()
@@ -36,6 +41,12 @@ namespace Presentation
                     {
                         return new KeyManager("Key.dat");
                     });
+                    services.AddTransient<IProfileService, ProfileService>();
+                    services.AddTransient<IBaseRepository<Profile>, ProfileRepository>();
+                    services.AddTransient<IChooseProfileView, ChooseProfile>();
+                    services.AddTransient<ChooseProfilePresenter>();
+                    services.AddTransient<ILoginView, LoginUserControl>();
+                    services.AddTransient<BasePresenter<ILoginView>, LoginPresenter>();
                 });
         }
 

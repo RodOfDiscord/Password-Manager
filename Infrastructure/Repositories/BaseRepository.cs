@@ -5,8 +5,8 @@ namespace Infrastructure.Repositories
 {
     public class BaseRepository<T> : IBaseRepository<T> where T : Entity
     {
-        private readonly PasswordStorageContext passwordStorageContext;
-        private readonly DbSet<T> dbSet;
+        protected readonly PasswordStorageContext passwordStorageContext;
+        protected readonly DbSet<T> dbSet;
 
         public BaseRepository(PasswordStorageContext context)
         {
