@@ -19,11 +19,7 @@ namespace Presentation.Presenters
             this.addNotePresenter = addNotePresenter;
             this.profile = profile;
 
-            editNotePresenter.View.Save += (object? sender, Note note) =>
-            {
-                View.ClearDataGridView();
-                View.FillDataGridView(profile.Notes);
-            };
+            editNotePresenter.NoteSaved += Refresh;
             addNotePresenter.SetProfileId(profile.Id);
             addNotePresenter.NoteAdded += Refresh;
         }

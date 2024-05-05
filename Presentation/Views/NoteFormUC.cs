@@ -34,6 +34,7 @@ namespace Presentation.Views
             this.note = note;
             textBoxNameNote.Text = note.UserName;
             textBoxPassword.Text = decryptedPassword;
+            emailTextBox.Text = note.Email;
             richTextBoxNoteDescription.Text = note.Description;
         }
 
