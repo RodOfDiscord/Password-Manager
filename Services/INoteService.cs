@@ -7,5 +7,6 @@ namespace Services
         IEnumerable<Note> FilterByName(string name);
         Note? FindById(Guid id);
         IEnumerable<Note> GetAllWithCategories();
+        void UpdateNote(Note note);
     }
 }

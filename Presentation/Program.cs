@@ -48,6 +48,7 @@ namespace Presentation
                     });
                     services.AddTransient<IProfileService, ProfileService>();
                     services.AddTransient<INoteService, NoteService>();
+                    services.AddTransient<ICategoryService,CategoryService>();
                     services.AddTransient<IBaseRepository<Profile>, ProfileRepository>();
                     services.AddTransient<LoginPresenter>();
                     services.AddTransient<EditNotePresenter>();
@@ -56,6 +57,7 @@ namespace Presentation
                     services.AddTransient<IEditNoteView, EditNoteForm>();
                     services.AddTransient<ILoginService, LoginService>();
                     services.AddTransient<IProfileRepository, ProfileRepository>();
+                    services.AddTransient<BaseRepository<Category>>();
                     services.AddTransient<INoteRepository, NoteRepository>();
                     services.AddTransient<IEncryptionService, EncryptionService>(provider =>
                     {

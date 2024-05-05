@@ -1,4 +1,5 @@
 ﻿using Domain;
+using Domain.Cipher;
 using Infrastructure.Repositories;
 
 namespace Services
@@ -6,10 +7,12 @@ namespace Services
     public class NoteService : INoteService
     {
         private readonly INoteRepository noteRepository;
+        private readonly IEncryptionService encryptionService;
 
-        public NoteService(INoteRepository noteRepository)
+        public NoteService(INoteRepository noteRepository, IEncryptionService encryptionService)
         {
             this.noteRepository = noteRepository;
+            this.encryptionService = encryptionService;
         }
 
         public IEnumerable<Note> GetAllWithCategories()
@@ -25,6 +28,12 @@ namespace Services
         public IEnumerable<Note> FilterByName(string name)
         {
             return noteRepository.FilterByName(name);
+        }
+
+        public void UpdateNote(Note note)
+        {
+            note.Password = encryptionService.Encrypt(note.Password);
+            noteRepository.Update(note);
         }
     }
 }

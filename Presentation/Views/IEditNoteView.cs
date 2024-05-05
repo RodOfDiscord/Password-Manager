@@ -4,6 +4,7 @@ namespace Presentation.Views
 {
     public interface IEditNoteView : IView
     {
-        public void PopulateNoteData(Note note, string decryptedPassword);
+        event EventHandler<Note>? Save;
+        public void PopulateNoteData(Note note, string decryptedPassword, List<Category> categories);
     }
 }

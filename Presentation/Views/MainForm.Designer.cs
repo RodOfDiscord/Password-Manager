@@ -52,6 +52,7 @@
             // passwordsDataGridView
             // 
             passwordsDataGridView.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            passwordsDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             passwordsDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             passwordsDataGridView.Location = new Point(12, 52);
             passwordsDataGridView.Name = "passwordsDataGridView";

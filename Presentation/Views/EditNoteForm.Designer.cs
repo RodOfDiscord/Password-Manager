@@ -39,23 +39,25 @@
             label3 = new Label();
             textBoxNameNote = new TextBox();
             categoryComboBox = new ComboBox();
+            errorLabel = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBoxClosePassword).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxOpenPassword).BeginInit();
             SuspendLayout();
             // 
             // buttonAddNote
             // 
-            buttonAddNote.Location = new Point(80, 291);
+            buttonAddNote.Location = new Point(85, 297);
             buttonAddNote.Margin = new Padding(4);
             buttonAddNote.Name = "buttonAddNote";
             buttonAddNote.Size = new Size(115, 51);
             buttonAddNote.TabIndex = 34;
             buttonAddNote.Text = "Save";
             buttonAddNote.UseVisualStyleBackColor = true;
+            buttonAddNote.Click += buttonSave_Click;
             // 
             // pictureBoxClosePassword
             // 
-            pictureBoxClosePassword.Location = new Point(270, 79);
+            pictureBoxClosePassword.Location = new Point(239, 79);
             pictureBoxClosePassword.Margin = new Padding(4);
             pictureBoxClosePassword.Name = "pictureBoxClosePassword";
             pictureBoxClosePassword.Size = new Size(24, 23);
@@ -65,7 +67,7 @@
             // pictureBoxOpenPassword
             // 
             pictureBoxOpenPassword.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBoxOpenPassword.Location = new Point(270, 79);
+            pictureBoxOpenPassword.Location = new Point(239, 79);
             pictureBoxOpenPassword.Margin = new Padding(4);
             pictureBoxOpenPassword.Name = "pictureBoxOpenPassword";
             pictureBoxOpenPassword.Size = new Size(24, 23);
@@ -116,7 +118,7 @@
             textBoxPassword.Location = new Point(17, 79);
             textBoxPassword.Margin = new Padding(4);
             textBoxPassword.Name = "textBoxPassword";
-            textBoxPassword.Size = new Size(246, 23);
+            textBoxPassword.Size = new Size(214, 23);
             textBoxPassword.TabIndex = 26;
             // 
             // label3
@@ -145,11 +147,21 @@
             categoryComboBox.Size = new Size(246, 23);
             categoryComboBox.TabIndex = 35;
             // 
+            // errorLabel
+            // 
+            errorLabel.ForeColor = Color.Red;
+            errorLabel.Location = new Point(17, 278);
+            errorLabel.Name = "errorLabel";
+            errorLabel.Size = new Size(246, 15);
+            errorLabel.TabIndex = 36;
+            errorLabel.TextAlign = ContentAlignment.MiddleCenter;
+            // 
             // EditNoteForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(304, 361);
+            ClientSize = new Size(284, 361);
+            Controls.Add(errorLabel);
             Controls.Add(categoryComboBox);
             Controls.Add(buttonAddNote);
             Controls.Add(pictureBoxClosePassword);
@@ -161,8 +173,8 @@
             Controls.Add(textBoxPassword);
             Controls.Add(label3);
             Controls.Add(textBoxNameNote);
-            MaximumSize = new Size(320, 400);
-            MinimumSize = new Size(320, 400);
+            MaximumSize = new Size(300, 400);
+            MinimumSize = new Size(300, 400);
             Name = "EditNoteForm";
             Text = "EditNoteForm";
             ((System.ComponentModel.ISupportInitialize)pictureBoxClosePassword).EndInit();
@@ -184,5 +196,6 @@
         private Label label3;
         private TextBox textBoxNameNote;
         private ComboBox categoryComboBox;
+        private Label errorLabel;
     }
 }

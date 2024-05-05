@@ -81,5 +81,11 @@ namespace Presentation
                 DeleteNote?.Invoke(sender, noteId);
             }
         }
+
+        public void ClearDataGridView()
+        {
+            passwordsDataGridView.Rows.Clear();
+            passwordsDataGridView.Refresh();
+        }
     }
 }
