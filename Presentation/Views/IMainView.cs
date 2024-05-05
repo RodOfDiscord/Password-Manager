@@ -7,7 +7,7 @@ namespace Presentation.Views
         void ClearDataGridView();
         event EventHandler<Guid> DeleteNote;
         event EventHandler<Guid> EditNote;
-        public event EventHandler<Guid>? AddNote;
+        public event EventHandler? AddNote;
         void SetAttributes(string profileName);
         void FillDataGridView(IEnumerable<Note> notes);
     }

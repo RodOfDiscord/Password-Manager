@@ -76,8 +76,9 @@
             addButton.Name = "addButton";
             addButton.Size = new Size(102, 48);
             addButton.TabIndex = 3;
-            addButton.Text = "Add";
+            addButton.Text = "Add Note";
             addButton.UseVisualStyleBackColor = true;
+            addButton.Click += addButton_Click;
             // 
             // operationsMenuStrip
             // 
@@ -110,6 +111,7 @@
             Controls.Add(profileNameLabel);
             Margin = new Padding(3, 2, 3, 2);
             Name = "MainForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)passwordsDataGridView).EndInit();
             operationsMenuStrip.ResumeLayout(false);

@@ -8,7 +8,7 @@ namespace Presentation
         DataGridViewRow? selectedRow;
         public event EventHandler<Guid>? DeleteNote;
         public event EventHandler<Guid>? EditNote;
-
+        public event EventHandler? AddNote;
         public MainForm()
         {
             InitializeComponent();
@@ -65,12 +65,12 @@ namespace Presentation
 
         private void EditNoteMenuItem_Click(object sender, EventArgs e)
         {
-            if(selectedRow != null)
+            if (selectedRow != null)
             {
                 Guid noteId = (Guid)selectedRow.Cells["Id"].Value;
                 EditNote?.Invoke(sender, noteId);
             }
-           
+
         }
 
         private void DeleteNoteMenuItem_Click(object sender, EventArgs e)
@@ -86,6 +86,11 @@ namespace Presentation
         {
             passwordsDataGridView.Rows.Clear();
             passwordsDataGridView.Refresh();
+        }
+
+        private void addButton_Click(object sender, EventArgs e)
+        {
+            AddNote?.Invoke(this, new EventArgs());
         }
     }
 }

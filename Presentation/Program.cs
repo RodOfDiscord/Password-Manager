@@ -52,9 +52,11 @@ namespace Presentation
                     services.AddTransient<IBaseRepository<Profile>, ProfileRepository>();
                     services.AddTransient<LoginPresenter>();
                     services.AddTransient<EditNotePresenter>();
+                    services.AddTransient<AddNotePresenter>();
                     services.AddTransient<ILoginView, LoginForm>();
                     services.AddTransient<IMainView, MainForm>();
                     services.AddTransient<IEditNoteView, EditNoteForm>();
+                    services.AddTransient<IAddNoteView, AddNoteForm>();
                     services.AddTransient<ILoginService, LoginService>();
                     services.AddTransient<IProfileRepository, ProfileRepository>();
                     services.AddTransient<BaseRepository<Category>>();
@@ -88,7 +90,8 @@ namespace Presentation
         {
             IMainView view = ServiceProvider.GetRequiredService<IMainView>();
             EditNotePresenter editNotePresenter = ServiceProvider.GetRequiredService<EditNotePresenter>();
-            MainPresenter mainPresenter = new MainPresenter(view, editNotePresenter, profile);
+            AddNotePresenter addNotePresenter = ServiceProvider.GetRequiredService<AddNotePresenter>();
+            MainPresenter mainPresenter = new MainPresenter(view, editNotePresenter, addNotePresenter, profile);
             mainPresenter.Run();
         }
     }

@@ -8,5 +8,7 @@ namespace Services
         Note? FindById(Guid id);
         IEnumerable<Note> GetAllWithCategories();
         void UpdateNote(Note note);
+        void AddNote(Note note);
+        void DeleteNote(Guid id);
     }
 }

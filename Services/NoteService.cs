@@ -35,5 +35,16 @@ namespace Services
             note.Password = encryptionService.Encrypt(note.Password);
             noteRepository.Update(note);
         }
+
+        public void AddNote(Note note)
+        {
+            note.Password = encryptionService.Encrypt(note.Password);
+            noteRepository.Create(note);
+        }
+
+        public void DeleteNote(Guid id)
+        {
+            noteRepository.DeleteById(id);
+        }
     }
 }
