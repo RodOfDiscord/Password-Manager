@@ -18,5 +18,15 @@ namespace Infrastructure.Repositories
         {
             return GetAll().FirstOrDefault(x => x.Name == name);
         }
+
+        public Profile? GetByNameWithNotes(string name)
+        {
+            return dbSet.Include(x => x.Notes).FirstOrDefault(x => x.Name == name);
+        }
+
+        public Profile? GetByNameWithAll(string name)
+        {
+            return dbSet.Include(x => x.Notes).ThenInclude(n => n.Category).FirstOrDefault(x => x.Name == name);
+        }
     }
 }

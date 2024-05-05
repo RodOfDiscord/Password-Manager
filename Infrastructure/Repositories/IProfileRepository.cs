@@ -6,5 +6,7 @@ namespace Infrastructure.Repositories
     {
         IEnumerable<Profile> GetAllWithNotes();
         Profile? GetByName(string name);
+        Profile? GetByNameWithNotes(string name);
+        Profile? GetByNameWithAll(string name);
     }
 }

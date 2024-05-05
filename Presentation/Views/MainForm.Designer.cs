@@ -28,26 +28,90 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             profileNameLabel = new Label();
+            passwordsDataGridView = new DataGridView();
+            textBox1 = new TextBox();
+            addButton = new Button();
+            operationsMenuStrip = new ContextMenuStrip(components);
+            editNoteMenuItem = new ToolStripMenuItem();
+            deleteNoteMenuItem = new ToolStripMenuItem();
+            ((System.ComponentModel.ISupportInitialize)passwordsDataGridView).BeginInit();
+            operationsMenuStrip.SuspendLayout();
             SuspendLayout();
             // 
             // profileNameLabel
             // 
             profileNameLabel.AutoSize = true;
-            profileNameLabel.Location = new Point(216, 77);
+            profileNameLabel.Dock = DockStyle.Top;
+            profileNameLabel.Location = new Point(0, 0);
             profileNameLabel.Name = "profileNameLabel";
             profileNameLabel.Size = new Size(0, 15);
             profileNameLabel.TabIndex = 0;
+            // 
+            // passwordsDataGridView
+            // 
+            passwordsDataGridView.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            passwordsDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            passwordsDataGridView.Location = new Point(12, 52);
+            passwordsDataGridView.Name = "passwordsDataGridView";
+            passwordsDataGridView.Size = new Size(562, 334);
+            passwordsDataGridView.TabIndex = 1;
+            passwordsDataGridView.MouseClick += PasswordsDataGridView_MouseClick;
+            // 
+            // textBox1
+            // 
+            textBox1.Anchor = AnchorStyles.Top;
+            textBox1.Location = new Point(162, 23);
+            textBox1.MaximumSize = new Size(250, 23);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(250, 23);
+            textBox1.TabIndex = 2;
+            // 
+            // addButton
+            // 
+            addButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            addButton.Location = new Point(472, 392);
+            addButton.Name = "addButton";
+            addButton.Size = new Size(102, 48);
+            addButton.TabIndex = 3;
+            addButton.Text = "Add";
+            addButton.UseVisualStyleBackColor = true;
+            // 
+            // operationsMenuStrip
+            // 
+            operationsMenuStrip.Items.AddRange(new ToolStripItem[] { editNoteMenuItem, deleteNoteMenuItem });
+            operationsMenuStrip.Name = "operationsMenuStrip";
+            operationsMenuStrip.Size = new Size(108, 48);
+            // 
+            // editNoteMenuItem
+            // 
+            editNoteMenuItem.Name = "editNoteMenuItem";
+            editNoteMenuItem.Size = new Size(107, 22);
+            editNoteMenuItem.Text = "Edit";
+            editNoteMenuItem.Click += EditNoteMenuItem_Click;
+            // 
+            // deleteNoteMenuItem
+            // 
+            deleteNoteMenuItem.Name = "deleteNoteMenuItem";
+            deleteNoteMenuItem.Size = new Size(107, 22);
+            deleteNoteMenuItem.Text = "Delete";
+            deleteNoteMenuItem.Click += DeleteNoteMenuItem_Click;
             // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(554, 415);
+            ClientSize = new Size(586, 452);
+            Controls.Add(addButton);
+            Controls.Add(textBox1);
+            Controls.Add(passwordsDataGridView);
             Controls.Add(profileNameLabel);
             Margin = new Padding(3, 2, 3, 2);
             Name = "MainForm";
             Text = "Form1";
+            ((System.ComponentModel.ISupportInitialize)passwordsDataGridView).EndInit();
+            operationsMenuStrip.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -55,5 +119,11 @@
         #endregion
 
         private Label profileNameLabel;
+        private DataGridView passwordsDataGridView;
+        private TextBox textBox1;
+        private Button addButton;
+        private ContextMenuStrip operationsMenuStrip;
+        private ToolStripMenuItem editNoteMenuItem;
+        private ToolStripMenuItem deleteNoteMenuItem;
     }
 }

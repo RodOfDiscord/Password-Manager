@@ -21,5 +21,15 @@ namespace Services
         {
             return repository.GetAll();
         }
+
+        public Profile? FindByNameWithNotes(string name)
+        {
+            return repository.GetByNameWithNotes(name);
+        }
+
+        public Profile? FindByNameWithAll(string name)
+        {
+            return repository.GetByNameWithAll(name);
+        }
     }
 }

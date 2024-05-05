@@ -47,12 +47,16 @@ namespace Presentation
                         return new KeyManager("Key.dat");
                     });
                     services.AddTransient<IProfileService, ProfileService>();
+                    services.AddTransient<INoteService, NoteService>();
                     services.AddTransient<IBaseRepository<Profile>, ProfileRepository>();
                     services.AddTransient<LoginPresenter>();
+                    services.AddTransient<EditNotePresenter>();
                     services.AddTransient<ILoginView, LoginForm>();
                     services.AddTransient<IMainView, MainForm>();
+                    services.AddTransient<IEditNoteView, EditNoteForm>();
                     services.AddTransient<ILoginService, LoginService>();
                     services.AddTransient<IProfileRepository, ProfileRepository>();
+                    services.AddTransient<INoteRepository, NoteRepository>();
                     services.AddTransient<IEncryptionService, EncryptionService>(provider =>
                     {
                         return new EncryptionService(provider.GetRequiredService<KeyManager>().GetDecryptedKey());
@@ -69,7 +73,7 @@ namespace Presentation
 
         private static void SetLoggedInProfile(object? sender, string username)
         {
-            Profile? profile = ServiceProvider.GetRequiredService<IProfileService>().FindByName(username);
+            Profile? profile = ServiceProvider.GetRequiredService<IProfileService>().FindByNameWithAll(username);
             if (profile == null)
             {
                 MessageBox.Show("Unable display window", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -81,7 +85,8 @@ namespace Presentation
         private static void RunMainForm()
         {
             IMainView view = ServiceProvider.GetRequiredService<IMainView>();
-            MainPresenter mainPresenter = new MainPresenter(view, profile);
+            EditNotePresenter editNotePresenter = ServiceProvider.GetRequiredService<EditNotePresenter>();
+            MainPresenter mainPresenter = new MainPresenter(view, editNotePresenter, profile);
             mainPresenter.Run();
         }
     }

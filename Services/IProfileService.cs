@@ -6,5 +6,7 @@ namespace Services
     {
         IEnumerable<Profile> GetProfiles();
         Profile? FindByName(string name);
+        Profile? FindByNameWithNotes(string name);
+        Profile? FindByNameWithAll(string name);
     }
 }
