@@ -28,19 +28,32 @@
         /// </summary>
         private void InitializeComponent()
         {
+            profileNameLabel = new Label();
             SuspendLayout();
+            // 
+            // profileNameLabel
+            // 
+            profileNameLabel.AutoSize = true;
+            profileNameLabel.Location = new Point(216, 77);
+            profileNameLabel.Name = "profileNameLabel";
+            profileNameLabel.Size = new Size(0, 15);
+            profileNameLabel.TabIndex = 0;
             // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(554, 415);
+            Controls.Add(profileNameLabel);
             Margin = new Padding(3, 2, 3, 2);
             Name = "MainForm";
             Text = "Form1";
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
+
+        private Label profileNameLabel;
     }
 }

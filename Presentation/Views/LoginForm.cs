@@ -1,20 +1,11 @@
 ﻿using Domain;
-using Presentation.Presenters;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace Presentation.Views
 {
     public partial class LoginForm : Form, ILoginView
     {
-        public event EventHandler<(string, string)> TryLogin;
+        public event EventHandler<(string, string)>? TryLogin;
 
         public LoginForm()
         {
@@ -29,11 +20,30 @@ namespace Presentation.Views
 
         public void DisplayProfiles(IEnumerable<Profile> profiles)
         {
-            profilesComboBox.Items.Add(profiles);
+            foreach (var profile in profiles)
+            {
+                profilesComboBox.Items.Add(profile.Name);
+            }
+            profilesComboBox.SelectedText = profiles.First().Name;
         }
 
-        public void OnProfileSelected(object? sender, string name)
+        private void buttonLogin_Click(object sender, EventArgs e)
         {
+            if (profilesComboBox.SelectedItem is string username)
+            {
+                TryLogin?.Invoke(this, (username, passwordTextBox.Text));
+            }
+        }
+
+        public void SetDialogResult(DialogResult dialogResult)
+        {
+            DialogResult = dialogResult;
+            Close();
+        }
+
+        public DialogResult GetDialogResult()
+        {
+            return DialogResult;
         }
     }
 }

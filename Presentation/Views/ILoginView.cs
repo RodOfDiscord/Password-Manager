@@ -7,5 +7,7 @@ namespace Presentation.Views
         void DisplayProfiles(IEnumerable<Profile> profiles);
         event EventHandler<(string, string)> TryLogin;
         public void DisplayErrorMessage(string message);
+        void SetDialogResult(DialogResult dialogResult);
+        DialogResult GetDialogResult();
     }
 }

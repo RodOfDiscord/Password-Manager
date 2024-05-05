@@ -15,6 +15,7 @@ namespace Presentation
     internal static class Program
     {
         public static IServiceProvider? ServiceProvider { get; private set; }
+        static Profile profile;
         /// <summary>
         ///  The main entry point for the application.
         /// </summary>
@@ -24,7 +25,11 @@ namespace Presentation
             ApplicationConfiguration.Initialize();
             ServiceProvider = CreateHostBuilder().Build().Services;
             CreateKey();
-            ServiceProvider.GetRequiredService<BasePresenter<ILoginView>>().Run();
+            LoginPresenter loginPresenter = ServiceProvider.GetRequiredService<LoginPresenter>();
+            loginPresenter.LoggedIn += SetLoggedInProfile;
+            loginPresenter.Run();
+            if (loginPresenter.View.GetDialogResult() == DialogResult.OK)
+                RunMainForm();
         }
 
         static IHostBuilder CreateHostBuilder()
@@ -43,7 +48,9 @@ namespace Presentation
                     });
                     services.AddTransient<IProfileService, ProfileService>();
                     services.AddTransient<IBaseRepository<Profile>, ProfileRepository>();
-                    services.AddTransient<BasePresenter<ILoginView>, LoginPresenter>();
+                    services.AddTransient<LoginPresenter>();
+                    services.AddTransient<ILoginView, LoginForm>();
+                    services.AddTransient<IMainView, MainForm>();
                     services.AddTransient<ILoginService, LoginService>();
                     services.AddTransient<IProfileRepository, ProfileRepository>();
                     services.AddTransient<IEncryptionService, EncryptionService>(provider =>
@@ -58,6 +65,24 @@ namespace Presentation
             KeyManager keyManager = ServiceProvider.GetRequiredService<KeyManager>();
             if (!keyManager.KeyExists())
                 keyManager.EncryptToFile(EncryptionKeyGenerator.Generate());
+        }
+
+        private static void SetLoggedInProfile(object? sender, string username)
+        {
+            Profile? profile = ServiceProvider.GetRequiredService<IProfileService>().FindByName(username);
+            if (profile == null)
+            {
+                MessageBox.Show("Unable display window", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            Program.profile = profile;
+        }
+
+        private static void RunMainForm()
+        {
+            IMainView view = ServiceProvider.GetRequiredService<IMainView>();
+            MainPresenter mainPresenter = new MainPresenter(view, profile);
+            mainPresenter.Run();
         }
     }
 }
