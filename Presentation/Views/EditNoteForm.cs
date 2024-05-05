@@ -11,6 +11,7 @@ namespace Presentation.Views
 
         public void SetForm(NoteFormUC noteForm)
         {
+            noteForm.Dock = DockStyle.Fill;
             panel1.Controls.Add(noteForm);
         }
 

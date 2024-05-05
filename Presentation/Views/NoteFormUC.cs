@@ -45,8 +45,21 @@ namespace Presentation.Views
             categoryComboBox.DataSource = bindingSource;
             categoryComboBox.DisplayMember = "Name";
             categoryComboBox.ValueMember = "Id";
-            if(note != null)
+            if (note != null)
                 categoryComboBox.SelectedValue = note.CategoryId;
+        }
+
+        private void passwordVisiblebutton_Click(object sender, EventArgs e)
+        {
+            if (textBoxPassword.UseSystemPasswordChar)
+            {
+                passwordVisiblebutton.BackgroundImage = Resources.show;
+            }
+            else
+            {
+                passwordVisiblebutton.BackgroundImage = Resources.hide;
+            }
+            textBoxPassword.UseSystemPasswordChar = !textBoxPassword.UseSystemPasswordChar;
         }
     }
 }
