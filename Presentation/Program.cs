@@ -48,15 +48,17 @@ namespace Presentation
                     });
                     services.AddTransient<IProfileService, ProfileService>();
                     services.AddTransient<INoteService, NoteService>();
-                    services.AddTransient<ICategoryService,CategoryService>();
+                    services.AddTransient<ICategoryService, CategoryService>();
                     services.AddTransient<IBaseRepository<Profile>, ProfileRepository>();
                     services.AddTransient<LoginPresenter>();
                     services.AddTransient<EditNotePresenter>();
                     services.AddTransient<AddNotePresenter>();
+                    services.AddTransient<CategoriesPresenter>();
                     services.AddTransient<ILoginView, LoginForm>();
                     services.AddTransient<IMainView, MainForm>();
                     services.AddTransient<IEditNoteView, EditNoteForm>();
                     services.AddTransient<IAddNoteView, AddNoteForm>();
+                    services.AddTransient<ICategoriesView, CategoriesForm>();
                     services.AddTransient<ILoginService, LoginService>();
                     services.AddTransient<IProfileRepository, ProfileRepository>();
                     services.AddTransient<BaseRepository<Category>>();
@@ -91,7 +93,8 @@ namespace Presentation
             IMainView view = ServiceProvider.GetRequiredService<IMainView>();
             EditNotePresenter editNotePresenter = ServiceProvider.GetRequiredService<EditNotePresenter>();
             AddNotePresenter addNotePresenter = ServiceProvider.GetRequiredService<AddNotePresenter>();
-            MainPresenter mainPresenter = new MainPresenter(view, editNotePresenter, addNotePresenter, profile);
+            CategoriesPresenter categoriesPresenter = ServiceProvider.GetRequiredService<CategoriesPresenter>();
+            MainPresenter mainPresenter = new MainPresenter(view, editNotePresenter, addNotePresenter, categoriesPresenter, profile);
             mainPresenter.Run();
         }
     }

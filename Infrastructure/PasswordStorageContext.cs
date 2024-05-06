@@ -33,7 +33,8 @@ namespace Infrastructure
                 entity.HasOne(e => e.Category)
                       .WithMany(c => c.Notes)
                       .HasForeignKey(e => e.CategoryId)
-                      .IsRequired(false);
+                      .IsRequired(false)
+                      .OnDelete(DeleteBehavior.Cascade);
                 entity.HasOne(p => p.Profile)
                       .WithMany(c => c.Notes)
                       .HasForeignKey(e => e.ProfileId)

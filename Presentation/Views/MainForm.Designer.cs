@@ -36,6 +36,7 @@
             operationsMenuStrip = new ContextMenuStrip(components);
             editNoteMenuItem = new ToolStripMenuItem();
             deleteNoteMenuItem = new ToolStripMenuItem();
+            categoryButton = new Button();
             ((System.ComponentModel.ISupportInitialize)passwordsDataGridView).BeginInit();
             operationsMenuStrip.SuspendLayout();
             SuspendLayout();
@@ -56,6 +57,7 @@
             passwordsDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             passwordsDataGridView.Location = new Point(12, 52);
             passwordsDataGridView.Name = "passwordsDataGridView";
+            passwordsDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             passwordsDataGridView.Size = new Size(562, 334);
             passwordsDataGridView.TabIndex = 1;
             passwordsDataGridView.MouseClick += PasswordsDataGridView_MouseClick;
@@ -100,11 +102,22 @@
             deleteNoteMenuItem.Text = "Delete";
             deleteNoteMenuItem.Click += DeleteNoteMenuItem_Click;
             // 
+            // categoryButton
+            // 
+            categoryButton.Location = new Point(12, 392);
+            categoryButton.Name = "categoryButton";
+            categoryButton.Size = new Size(102, 48);
+            categoryButton.TabIndex = 4;
+            categoryButton.Text = "Manage Categories";
+            categoryButton.UseVisualStyleBackColor = true;
+            categoryButton.Click += categoryButton_Click;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(586, 452);
+            Controls.Add(categoryButton);
             Controls.Add(addButton);
             Controls.Add(textBox1);
             Controls.Add(passwordsDataGridView);
@@ -128,5 +141,6 @@
         private ContextMenuStrip operationsMenuStrip;
         private ToolStripMenuItem editNoteMenuItem;
         private ToolStripMenuItem deleteNoteMenuItem;
+        private Button categoryButton;
     }
 }

@@ -9,6 +9,8 @@ namespace Presentation
         public event EventHandler<Guid>? DeleteNote;
         public event EventHandler<Guid>? EditNote;
         public event EventHandler? AddNote;
+        public event EventHandler? ManageCategories;
+
         public MainForm()
         {
             InitializeComponent();
@@ -82,7 +84,7 @@ namespace Presentation
             }
         }
 
-        public void ClearDataGridView()
+        public void ClearTable()
         {
             passwordsDataGridView.Rows.Clear();
             passwordsDataGridView.Refresh();
@@ -90,7 +92,12 @@ namespace Presentation
 
         private void addButton_Click(object sender, EventArgs e)
         {
-            AddNote?.Invoke(this, new EventArgs());
+            AddNote?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void categoryButton_Click(object sender, EventArgs e)
+        {
+            ManageCategories?.Invoke(this, EventArgs.Empty);
         }
     }
 }

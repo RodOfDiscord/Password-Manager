@@ -4,10 +4,11 @@ namespace Presentation.Views
 {
     public interface IMainView : IView
     {
-        void ClearDataGridView();
+        void ClearTable();
         event EventHandler<Guid> DeleteNote;
         event EventHandler<Guid> EditNote;
-        public event EventHandler? AddNote;
+        event EventHandler ManageCategories;
+        event EventHandler AddNote;
         void SetAttributes(string profileName);
         void FillDataGridView(IEnumerable<Note> notes);
     }

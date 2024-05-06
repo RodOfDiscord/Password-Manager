@@ -7,18 +7,22 @@ namespace Presentation.Presenters
     {
         EditNotePresenter editNotePresenter;
         private readonly AddNotePresenter addNotePresenter;
+        private readonly CategoriesPresenter categoriesPresenter;
         private readonly Profile profile;
 
-        public MainPresenter(IMainView view, EditNotePresenter editNotePresenter, AddNotePresenter addNotePresenter, Profile profile) : base(view)
+        public MainPresenter(IMainView view, EditNotePresenter editNotePresenter, AddNotePresenter addNotePresenter,CategoriesPresenter categoriesPresenter, Profile profile) : base(view)
         {
             View.SetAttributes(profile.Name);
             View.FillDataGridView(profile.Notes);
             View.EditNote += onEditNote;
             View.AddNote += onAddNote;
+            View.ManageCategories += onCategories;
             this.editNotePresenter = editNotePresenter;
             this.addNotePresenter = addNotePresenter;
+            this.categoriesPresenter = categoriesPresenter;
             this.profile = profile;
 
+            categoriesPresenter.CategoriesChanged += Refresh;
             editNotePresenter.NoteSaved += Refresh;
             addNotePresenter.SetProfileId(profile.Id);
             addNotePresenter.NoteAdded += Refresh;
@@ -26,7 +30,7 @@ namespace Presentation.Presenters
 
         private void Refresh(object? sender, EventArgs e)
         {
-            View.ClearDataGridView();
+            View.ClearTable();
             View.FillDataGridView(profile.Notes);
         }
 
@@ -40,6 +44,11 @@ namespace Presentation.Presenters
         {
 
             addNotePresenter.Run();
+        }
+
+        private void onCategories(object? sender, EventArgs eventArgs)
+        {
+            categoriesPresenter.Run();
         }
     }
 }
