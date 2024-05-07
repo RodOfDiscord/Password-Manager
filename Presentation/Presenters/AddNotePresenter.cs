@@ -9,13 +9,14 @@ namespace Presentation.Presenters
         private readonly INoteService noteService;
         public event EventHandler? NoteAdded;
         private Guid ProfileId;
+        public NoteFormUC NoteForm {  get; private set; }
         public AddNotePresenter(IAddNoteView view, INoteService noteService, ICategoryService categoryService) : base(view)
         {
-            NoteFormUC form = new NoteFormUC("Add");
-            form.PopulateCategoriesComboBox(categoryService.GetAll().ToList());
-            View.SetForm(form);
+            NoteForm = new NoteFormUC("Add");
+            NoteForm.PopulateCategoriesComboBox(categoryService.GetAll().ToList());
+            View.SetForm(NoteForm);
 
-            form.SubmitButtonClick += AddNote;
+            NoteForm.SubmitButtonClick += AddNote;
             this.noteService = noteService;
         }
 
@@ -26,6 +27,7 @@ namespace Presentation.Presenters
 
         private void AddNote(object? sender, Note note)
         {
+            note.Id = Guid.Empty;
             note.CreatedAt = DateTime.Now;
             note.ProfileId = ProfileId;
             noteService.AddNote(note);

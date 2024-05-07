@@ -12,12 +12,12 @@ namespace Presentation.Presenters
         private readonly IEncryptionService encryptionService;
         public event EventHandler? NoteSaved;
         Note? note;
-        NoteFormUC formUC = new NoteFormUC("Save");
+        public NoteFormUC NoteForm = new NoteFormUC("Save");
 
         public EditNotePresenter(IEditNoteView view, INoteService noteService, ICategoryService categoryService, IEncryptionService encryptionService) : base(view)
         {
-            View.SetForm(formUC);
-            formUC.SubmitButtonClick += Save;
+            View.SetForm(NoteForm);
+            NoteForm.SubmitButtonClick += Save;
             this.noteService = noteService;
             this.categoryService = categoryService;
             this.encryptionService = encryptionService;
@@ -32,10 +32,10 @@ namespace Presentation.Presenters
 
         public void SetNoteData(Guid id)
         {
-            formUC.PopulateCategoriesComboBox(categoryService.GetAll().ToList());
             note = noteService.FindById(id);
             string decryptedPassword = encryptionService.Decrypt(note.Password);
-            formUC.PopulateNoteData(note, decryptedPassword);
+            NoteForm.PopulateNoteData(note, decryptedPassword);
+            NoteForm.PopulateCategoriesComboBox(categoryService.GetAll().ToList());
         }
     }
 }

@@ -53,6 +53,13 @@ namespace Infrastructure
                 entity.HasKey(e => e.Id);
                 entity.ToTable("profiles");
             });
+
+            modelBuilder.Entity<Category>().HasData(new Category()
+            {
+                Id = Guid.NewGuid(),
+                Name = "Default",
+                Description = "Category by default"
+            });
         }
     }
 }

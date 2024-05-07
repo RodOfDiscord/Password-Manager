@@ -127,7 +127,6 @@
             textBoxPassword.Size = new Size(244, 27);
             textBoxPassword.TabIndex = 51;
             textBoxPassword.UseSystemPasswordChar = true;
-            textBoxPassword.TextChanged += textBoxPassword_TextChanged;
             // 
             // label3
             // 

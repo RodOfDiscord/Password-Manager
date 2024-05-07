@@ -15,14 +15,21 @@ namespace Presentation.Views
         private void submitButton_Click(object sender, EventArgs e)
         {
             note ??= new Note();
-            if (textBoxNameNote.Text == string.Empty || textBoxPassword.Text == string.Empty || emailTextBox.Text == string.Empty)
+            if (textBoxNameNote.Text == string.Empty
+                || textBoxPassword.Text == string.Empty
+                || emailTextBox.Text == string.Empty
+                || categoryComboBox.SelectedItem == null)
             {
-                errorLabel.Text = "Name, Password and Email must be not empty";
+                errorLabel.Text = "Name, Password, Email and category must be not empty";
                 return;
             }
             note.UserName = textBoxNameNote.Text;
             note.Description = richTextBoxNoteDescription.Text;
-            note.CategoryId = (Guid)categoryComboBox.SelectedValue;
+            if(categoryComboBox.SelectedItem != null)
+            {
+                Category category = categoryComboBox.SelectedItem as Category;
+                note.CategoryId = category.Id;
+            }
             note.Password = textBoxPassword.Text;
             note.Email = emailTextBox.Text;
 
@@ -40,13 +47,15 @@ namespace Presentation.Views
 
         public void PopulateCategoriesComboBox(List<Category> categories)
         {
-            BindingSource bindingSource = new BindingSource();
-            bindingSource.DataSource = categories;
-            categoryComboBox.DataSource = bindingSource;
+            categoryComboBox.Items.Clear();
+            foreach (Category category in categories)
+            {
+                categoryComboBox.Items.Add(category);
+            }
             categoryComboBox.DisplayMember = "Name";
             categoryComboBox.ValueMember = "Id";
             if (note != null)
-                categoryComboBox.SelectedValue = note.CategoryId;
+                categoryComboBox.SelectedIndex = categoryComboBox.Items.IndexOf(note.Category);
         }
 
         private void passwordVisiblebutton_Click(object sender, EventArgs e)
@@ -60,11 +69,6 @@ namespace Presentation.Views
                 passwordVisiblebutton.BackgroundImage = Resources.hide;
             }
             textBoxPassword.UseSystemPasswordChar = !textBoxPassword.UseSystemPasswordChar;
-        }
-
-        private void textBoxPassword_TextChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

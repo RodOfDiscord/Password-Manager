@@ -22,7 +22,8 @@ namespace Presentation
             AddNotePresenter addNotePresenter = serviceProvider.GetRequiredService<AddNotePresenter>();
             CategoriesPresenter categoriesPresenter = serviceProvider.GetRequiredService<CategoriesPresenter>();
             INoteService noteService = serviceProvider.GetRequiredService<INoteService>();
-            MainPresenter mainPresenter = new MainPresenter(view, editNotePresenter, addNotePresenter, categoriesPresenter, noteService, profile);
+            ICategoryService categoryService = serviceProvider.GetRequiredService<ICategoryService>();
+            MainPresenter mainPresenter = new MainPresenter(view, editNotePresenter, addNotePresenter, categoriesPresenter, noteService, categoryService, profile);
             return mainPresenter;
         }
     }

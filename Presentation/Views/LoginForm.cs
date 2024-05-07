@@ -25,7 +25,8 @@ namespace Presentation.Views
             {
                 profilesComboBox.Items.Add(profile.Name);
             }
-            profilesComboBox.SelectedText = profiles.First().Name;
+            if (profiles.Any())
+                profilesComboBox.SelectedText = profiles.First()?.Name;
         }
 
         private void buttonLogin_Click(object sender, EventArgs e)

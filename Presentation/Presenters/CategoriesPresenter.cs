@@ -8,7 +8,7 @@ namespace Presentation.Presenters
     {
         private readonly AddCategoryPresenter addCategoryPresenter;
         private readonly ICategoryService categoryService;
-        public event EventHandler? CategoriesChanged;
+        public event EventHandler? CategoryChanged;
         public CategoriesPresenter(ICategoriesView view, AddCategoryPresenter addCategoryPresenter, ICategoryService categoryService) : base(view)
         {
             this.addCategoryPresenter = addCategoryPresenter;
@@ -29,7 +29,7 @@ namespace Presentation.Presenters
         {
             categoryService.Delete(e);
             RefreshData();
-            CategoriesChanged?.Invoke(this, EventArgs.Empty);
+            CategoryChanged?.Invoke(this, EventArgs.Empty);
         }
 
         private void UpdateCategory(object? sender, (Guid, string) idWithName)
@@ -39,7 +39,7 @@ namespace Presentation.Presenters
             {
                 category.Name = idWithName.Item2;
                 categoryService.Update(category);
-                CategoriesChanged?.Invoke(this, EventArgs.Empty);
+                CategoryChanged?.Invoke(this, EventArgs.Empty);
             }
             RefreshData();
 
