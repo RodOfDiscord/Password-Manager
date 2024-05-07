@@ -13,7 +13,7 @@ namespace Presentation.Views
         public event EventHandler<Guid>? DeleteCategory;
 
         public event EventHandler<(Guid, string)>? UpdateCategory;
-
+        public event EventHandler? AddCategory;
 
         public void PopulateCategories(List<Category> categories)
         {
@@ -78,6 +78,11 @@ namespace Presentation.Views
         {
             categoriesDataGridView.Rows.Clear();
             categoriesDataGridView.Refresh();
+        }
+
+        private void addButton_Click(object sender, EventArgs e)
+        {
+            AddCategory?.Invoke(this, EventArgs.Empty);
         }
     }
 }

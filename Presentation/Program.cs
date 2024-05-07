@@ -63,6 +63,8 @@ namespace Presentation
                     services.AddTransient<IProfileRepository, ProfileRepository>();
                     services.AddTransient<BaseRepository<Category>>();
                     services.AddTransient<INoteRepository, NoteRepository>();
+                    services.AddTransient<AddCategoryPresenter>();
+                    services.AddTransient<IAddCategoryView, AddCategoryForm>();
                     services.AddTransient<IEncryptionService, EncryptionService>(provider =>
                     {
                         return new EncryptionService(provider.GetRequiredService<KeyManager>().GetDecryptedKey());

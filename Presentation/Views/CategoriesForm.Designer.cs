@@ -46,25 +46,29 @@
             panel1.Controls.Add(nameTextBox);
             panel1.Dock = DockStyle.Left;
             panel1.Location = new Point(0, 0);
+            panel1.Margin = new Padding(3, 4, 3, 4);
             panel1.Name = "panel1";
-            panel1.Size = new Size(200, 450);
+            panel1.Size = new Size(229, 600);
             panel1.TabIndex = 0;
             // 
             // addButton
             // 
-            addButton.Location = new Point(25, 401);
+            addButton.Location = new Point(29, 535);
+            addButton.Margin = new Padding(3, 4, 3, 4);
             addButton.Name = "addButton";
-            addButton.Size = new Size(145, 37);
+            addButton.Size = new Size(166, 49);
             addButton.TabIndex = 3;
             addButton.Text = "Add New";
             addButton.UseVisualStyleBackColor = true;
+            addButton.Click += addButton_Click;
             // 
             // deleteButton
             // 
             deleteButton.BackColor = Color.LightCoral;
-            deleteButton.Location = new Point(25, 96);
+            deleteButton.Location = new Point(29, 128);
+            deleteButton.Margin = new Padding(3, 4, 3, 4);
             deleteButton.Name = "deleteButton";
-            deleteButton.Size = new Size(145, 37);
+            deleteButton.Size = new Size(166, 49);
             deleteButton.TabIndex = 2;
             deleteButton.Text = "Delete";
             deleteButton.UseVisualStyleBackColor = false;
@@ -73,9 +77,10 @@
             // updateButton
             // 
             updateButton.BackColor = Color.CornflowerBlue;
-            updateButton.Location = new Point(25, 53);
+            updateButton.Location = new Point(29, 71);
+            updateButton.Margin = new Padding(3, 4, 3, 4);
             updateButton.Name = "updateButton";
-            updateButton.Size = new Size(145, 37);
+            updateButton.Size = new Size(166, 49);
             updateButton.TabIndex = 1;
             updateButton.Text = "Update";
             updateButton.UseVisualStyleBackColor = false;
@@ -83,9 +88,10 @@
             // 
             // nameTextBox
             // 
-            nameTextBox.Location = new Point(25, 24);
+            nameTextBox.Location = new Point(29, 32);
+            nameTextBox.Margin = new Padding(3, 4, 3, 4);
             nameTextBox.Name = "nameTextBox";
-            nameTextBox.Size = new Size(145, 23);
+            nameTextBox.Size = new Size(165, 27);
             nameTextBox.TabIndex = 0;
             // 
             // categoriesDataGridView
@@ -93,21 +99,24 @@
             categoriesDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             categoriesDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             categoriesDataGridView.Dock = DockStyle.Fill;
-            categoriesDataGridView.Location = new Point(200, 0);
+            categoriesDataGridView.Location = new Point(229, 0);
+            categoriesDataGridView.Margin = new Padding(3, 4, 3, 4);
             categoriesDataGridView.Name = "categoriesDataGridView";
             categoriesDataGridView.ReadOnly = true;
+            categoriesDataGridView.RowHeadersWidth = 51;
             categoriesDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            categoriesDataGridView.Size = new Size(600, 450);
+            categoriesDataGridView.Size = new Size(685, 600);
             categoriesDataGridView.TabIndex = 1;
             categoriesDataGridView.CellClick += categoriesDataGridView_CellClick;
             // 
             // CategoriesForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(914, 600);
             Controls.Add(categoriesDataGridView);
             Controls.Add(panel1);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "CategoriesForm";
             Text = "CategoriesForm";
             panel1.ResumeLayout(false);

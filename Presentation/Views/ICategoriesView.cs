@@ -6,6 +6,7 @@ namespace Presentation.Views
     {
         event EventHandler<Guid> DeleteCategory;
         event EventHandler<(Guid, string)> UpdateCategory;
+        event EventHandler? AddCategory;
         public void PopulateCategories(List<Category> categories);
         public void ClearTable();
     }
