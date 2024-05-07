@@ -8,5 +8,6 @@ namespace Services
         Profile? FindByName(string name);
         Profile? FindByNameWithNotes(string name);
         Profile? FindByNameWithAll(string name);
+        void Add(Profile profile);
     }
 }

@@ -5,6 +5,7 @@ namespace Presentation.Views
 {
     public partial class LoginForm : Form, ILoginView
     {
+        public event EventHandler? OpenAddProfileView;
         public event EventHandler<(string, string)>? TryLogin;
 
         public LoginForm()
@@ -44,6 +45,21 @@ namespace Presentation.Views
         public DialogResult GetDialogResult()
         {
             return DialogResult;
+        }
+
+        private void addButton_Click(object sender, EventArgs e)
+        {
+            OpenAddProfileView?.Invoke(this, EventArgs.Empty);
+        }
+
+        public new void Show()
+        {
+            ShowDialog();
+        }
+
+        public void ClearProfiles()
+        {
+            profilesComboBox.Items.Clear();
         }
     }
 }

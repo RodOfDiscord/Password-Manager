@@ -1,4 +1,5 @@
-﻿using Presentation.Views;
+﻿using Domain;
+using Presentation.Views;
 using Services;
 
 namespace Presentation.Presenters
@@ -6,12 +7,30 @@ namespace Presentation.Presenters
     public class LoginPresenter : BasePresenter<ILoginView>
     {
         ILoginService loginService;
+        private readonly AddProfilePresenter addProfilePresenter;
+        private readonly IProfileService profileService;
         public event EventHandler<string>? LoggedIn;
-        public LoginPresenter(ILoginView view, ILoginService loginService, IProfileService profileService) : base(view)
+
+        public LoginPresenter(ILoginView view, ILoginService loginService, AddProfilePresenter addProfilePresenter, IProfileService profileService) : base(view)
         {
             this.loginService = loginService;
+            this.addProfilePresenter = addProfilePresenter;
+            this.profileService = profileService;
             view.TryLogin += TryLogin;
+            view.OpenAddProfileView += AddProfile;
             view.DisplayProfiles(profileService.GetProfiles());
+            addProfilePresenter.ProfileAdded += ProfileAdded;
+        }
+
+        private void ProfileAdded(object? sender, EventArgs e)
+        {
+            View.ClearProfiles();
+            View.DisplayProfiles(profileService.GetProfiles());
+        }
+
+        private void AddProfile(object? sender, EventArgs e)
+        {
+            addProfilePresenter.Run();
         }
 
         private void TryLogin(object? sender, (string, string) profileData)
@@ -26,12 +45,6 @@ namespace Presentation.Presenters
             {
                 View.DisplayErrorMessage("Login failed");
             }
-        }
-
-        public override void Run()
-        {
-            LoginForm form = View as LoginForm;
-            form.ShowDialog();
         }
     }
 }

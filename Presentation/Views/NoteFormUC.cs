@@ -61,5 +61,10 @@ namespace Presentation.Views
             }
             textBoxPassword.UseSystemPasswordChar = !textBoxPassword.UseSystemPasswordChar;
         }
+
+        private void textBoxPassword_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

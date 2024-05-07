@@ -31,5 +31,10 @@ namespace Services
         {
             return repository.GetByNameWithAll(name);
         }
+
+        public void Add(Profile profile)
+        {
+            repository.Create(profile);
+        }
     }
 }
