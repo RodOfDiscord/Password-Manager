@@ -47,7 +47,7 @@
             profileNameLabel.Dock = DockStyle.Top;
             profileNameLabel.Location = new Point(0, 0);
             profileNameLabel.Name = "profileNameLabel";
-            profileNameLabel.Size = new Size(0, 15);
+            profileNameLabel.Size = new Size(0, 20);
             profileNameLabel.TabIndex = 0;
             // 
             // passwordsDataGridView
@@ -55,28 +55,32 @@
             passwordsDataGridView.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             passwordsDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             passwordsDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            passwordsDataGridView.Location = new Point(12, 52);
+            passwordsDataGridView.Location = new Point(14, 69);
+            passwordsDataGridView.Margin = new Padding(3, 4, 3, 4);
             passwordsDataGridView.Name = "passwordsDataGridView";
+            passwordsDataGridView.RowHeadersWidth = 51;
             passwordsDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            passwordsDataGridView.Size = new Size(562, 334);
+            passwordsDataGridView.Size = new Size(642, 445);
             passwordsDataGridView.TabIndex = 1;
             passwordsDataGridView.MouseClick += PasswordsDataGridView_MouseClick;
             // 
             // textBox1
             // 
             textBox1.Anchor = AnchorStyles.Top;
-            textBox1.Location = new Point(162, 23);
-            textBox1.MaximumSize = new Size(250, 23);
+            textBox1.Location = new Point(185, 31);
+            textBox1.Margin = new Padding(3, 4, 3, 4);
+            textBox1.MaximumSize = new Size(285, 23);
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(250, 23);
+            textBox1.Size = new Size(285, 23);
             textBox1.TabIndex = 2;
             // 
             // addButton
             // 
             addButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            addButton.Location = new Point(472, 392);
+            addButton.Location = new Point(539, 523);
+            addButton.Margin = new Padding(3, 4, 3, 4);
             addButton.Name = "addButton";
-            addButton.Size = new Size(102, 48);
+            addButton.Size = new Size(117, 64);
             addButton.TabIndex = 3;
             addButton.Text = "Add Note";
             addButton.UseVisualStyleBackColor = true;
@@ -84,29 +88,31 @@
             // 
             // operationsMenuStrip
             // 
+            operationsMenuStrip.ImageScalingSize = new Size(20, 20);
             operationsMenuStrip.Items.AddRange(new ToolStripItem[] { editNoteMenuItem, deleteNoteMenuItem });
             operationsMenuStrip.Name = "operationsMenuStrip";
-            operationsMenuStrip.Size = new Size(108, 48);
+            operationsMenuStrip.Size = new Size(123, 52);
             // 
             // editNoteMenuItem
             // 
             editNoteMenuItem.Name = "editNoteMenuItem";
-            editNoteMenuItem.Size = new Size(107, 22);
+            editNoteMenuItem.Size = new Size(122, 24);
             editNoteMenuItem.Text = "Edit";
             editNoteMenuItem.Click += EditNoteMenuItem_Click;
             // 
             // deleteNoteMenuItem
             // 
             deleteNoteMenuItem.Name = "deleteNoteMenuItem";
-            deleteNoteMenuItem.Size = new Size(107, 22);
+            deleteNoteMenuItem.Size = new Size(122, 24);
             deleteNoteMenuItem.Text = "Delete";
             deleteNoteMenuItem.Click += DeleteNoteMenuItem_Click;
             // 
             // categoryButton
             // 
-            categoryButton.Location = new Point(12, 392);
+            categoryButton.Location = new Point(14, 523);
+            categoryButton.Margin = new Padding(3, 4, 3, 4);
             categoryButton.Name = "categoryButton";
-            categoryButton.Size = new Size(102, 48);
+            categoryButton.Size = new Size(117, 64);
             categoryButton.TabIndex = 4;
             categoryButton.Text = "Manage Categories";
             categoryButton.UseVisualStyleBackColor = true;
@@ -114,15 +120,14 @@
             // 
             // MainForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(586, 452);
+            ClientSize = new Size(670, 603);
             Controls.Add(categoryButton);
             Controls.Add(addButton);
             Controls.Add(textBox1);
             Controls.Add(passwordsDataGridView);
             Controls.Add(profileNameLabel);
-            Margin = new Padding(3, 2, 3, 2);
             Name = "MainForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Form1";

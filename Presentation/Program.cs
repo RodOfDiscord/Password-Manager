@@ -15,7 +15,7 @@ namespace Presentation
     internal static class Program
     {
         public static IServiceProvider? ServiceProvider { get; private set; }
-        static Profile profile;
+        static Profile? profile;
         /// <summary>
         ///  The main entry point for the application.
         /// </summary>
@@ -26,7 +26,7 @@ namespace Presentation
             ServiceProvider = CreateHostBuilder().Build().Services;
             CreateKey();
             LoginPresenter loginPresenter = ServiceProvider.GetRequiredService<LoginPresenter>();
-            loginPresenter.LoggedIn += SetLoggedInProfile;
+            loginPresenter.LoggedIn += SetCurrentProfile;
             loginPresenter.Run();
             if (loginPresenter.View.GetDialogResult() == DialogResult.OK)
                 RunMainForm();
@@ -67,6 +67,7 @@ namespace Presentation
                     services.AddTransient<IAddCategoryView, AddCategoryForm>();
                     services.AddTransient<IAddProfileView, AddProfileForm>();
                     services.AddTransient<AddProfilePresenter>();
+                    services.AddTransient<IMainPresenterFactory, MainPresenterFactory>();
                     services.AddTransient<IEncryptionService, EncryptionService>(provider =>
                     {
                         return new EncryptionService(provider.GetRequiredService<KeyManager>().GetDecryptedKey());
@@ -81,7 +82,7 @@ namespace Presentation
                 keyManager.EncryptToFile(EncryptionKeyGenerator.Generate());
         }
 
-        private static void SetLoggedInProfile(object? sender, string username)
+        private static void SetCurrentProfile(object? sender, string username)
         {
             Profile? profile = ServiceProvider.GetRequiredService<IProfileService>().FindByNameWithAll(username);
             if (profile == null)
@@ -94,12 +95,11 @@ namespace Presentation
 
         private static void RunMainForm()
         {
-            IMainView view = ServiceProvider.GetRequiredService<IMainView>();
-            EditNotePresenter editNotePresenter = ServiceProvider.GetRequiredService<EditNotePresenter>();
-            AddNotePresenter addNotePresenter = ServiceProvider.GetRequiredService<AddNotePresenter>();
-            CategoriesPresenter categoriesPresenter = ServiceProvider.GetRequiredService<CategoriesPresenter>();
-            MainPresenter mainPresenter = new MainPresenter(view, editNotePresenter, addNotePresenter, categoriesPresenter, profile);
-            mainPresenter.Run();
+            if (profile is not null)
+            {
+                IMainPresenterFactory factory = ServiceProvider.GetRequiredService<IMainPresenterFactory>();
+                factory.Create(profile).Run();
+            }
         }
     }
 }

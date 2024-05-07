@@ -11,14 +11,8 @@ namespace Presentation.Views
 
         public string PasswordText
         {
-            get
-            {
-                return textBoxPassword.Text;
-            }
-            set
-            {
-                textBoxPassword.Text = value;
-            }
+            get => textBoxPassword.Text;
+            set => textBoxPassword.Text = value;
         }
 
         private void passwordVisiblebutton_Click(object sender, EventArgs e)
@@ -36,9 +30,10 @@ namespace Presentation.Views
 
         private void generatePassButton_Click(object sender, EventArgs e)
         {
-            PasswordGenerator generator = new PasswordGenerator();
-            generator.IncludeUppercase().IncludeDigits();
-            textBoxPassword.Text = generator.Generate(new Random().Next(8, 16));
+            textBoxPassword.Text = new PasswordGenerator().IncludeUppercase()
+                                                          .IncludeDigits()
+                                                          .IncludeSpecialSymbols()
+                                                          .Generate(new Random().Next(8, 16));
         }
     }
-}
+}   
