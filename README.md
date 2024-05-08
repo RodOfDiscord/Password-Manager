@@ -2,6 +2,19 @@
 
 App on WinForms with password encryption and storing data locally in a Sqlite.
 
+## Startup
+
+- Clone repository
+- In a root folder execute command:
+
+```bash
+dotnet ef database update --startup-project Presentation/Presentation.csproj
+```
+
+- In the Solution Explorer (Visual Studio), find in _Presentation_ folder the database file (PasswordStorage.db).
+- Right-click on the file and select "Properties".
+- Set **Copy to Output Directory** to _Copy if newer_ or _Copy always_
+
 ## Features
 
 - Adding/Editing/Deleting/Reading Categories
