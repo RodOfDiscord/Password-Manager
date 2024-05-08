@@ -43,7 +43,7 @@ Entities, Services and Repositories implement only useful functionality.
 
 ### Dependency Inversion
 
-Views(Forms), Repositories, Services implement own interfaces and they are used as dependency in constructor parameters. Also all services are registered in [Program.cs](Presentation\Program.cs#L49-L73) with Service Container from Dependency Injection extension.
+Views(Forms), Repositories, Services implement own interfaces and they are used as dependency in constructor parameters. Also all services are registered in [Program.cs](Presentation/Program.cs#L49-L74) with Service Container from Dependency Injection extension.
 
 ## Refactoring Techniques (3)
 
@@ -157,7 +157,7 @@ public partial class CategoriesForm : Form, ICategoriesView
 
 ### Builder
 
-[PasswordGenerator](Domain\PasswordGenerator.cs) use Builder Pattern to _tick_ which symbols to use for generating password. In addition class provides fluent interface
+[PasswordGenerator](Domain/PasswordGenerator.cs) use Builder Pattern to _tick_ which symbols to use for generating password. In addition class provides fluent interface
 
 ```c#
 textBoxPassword.Text = new PasswordGenerator().IncludeUppercase()
@@ -168,4 +168,4 @@ textBoxPassword.Text = new PasswordGenerator().IncludeUppercase()
 
 ### Factory
 
-Encapsulate initialization of MainPresenter into a [MainPresenterFactory](Presentation\MainPresenterFactory.cs) to make code cleaner
+Encapsulate initialization of MainPresenter into a [MainPresenterFactory](Presentation/MainPresenterFactory.cs) to make code cleaner
